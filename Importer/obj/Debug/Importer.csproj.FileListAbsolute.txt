@@ -1,0 +1,5 @@
+c:\development\AutismImporter\Importer\bin\Debug\Importer.exe
+c:\development\AutismImporter\Importer\bin\Debug\Importer.pdb
+c:\development\AutismImporter\Importer\obj\Debug\ResolveAssemblyReference.cache
+c:\development\AutismImporter\Importer\obj\Debug\Importer.exe
+c:\development\AutismImporter\Importer\obj\Debug\Importer.pdb
