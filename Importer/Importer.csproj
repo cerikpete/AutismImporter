@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\UserContainer.cs" />
     <Compile Include="DTOs\Task.cs" />
     <Compile Include="DTOs\User.cs" />
     <Compile Include="JsonConverter\JavaScriptConverter.cs" />

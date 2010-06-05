@@ -13,15 +13,15 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            jsonText = "{\"name\": \"Bob\"}";
+            jsonText = "{\"user\": {\"name\": \"Bob\"}}";
             serializer = new JavaScriptSerializer();
         }
 
         [Test]
         public void ShouldCorrectlySerializeJsonToObjects()
         {
-            var o = serializer.Deserialize<User>(jsonText);
-            Assert.AreEqual("Bob", o.name);
+            var userContainer = serializer.Deserialize<UserContainer>(jsonText);
+            Assert.AreEqual("Bob", userContainer.user.name);
         }
     }
 }
