@@ -13,7 +13,7 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            jsonText = "{\"data\": {\"user\": {\"name\": \"Bob\", \"tasks\": [{\"name\": \"Task 1\"}, {\"name\": \"Task 2\"}]}}}";
+            jsonText = "{\"data\": {\"user\": {\"name\": \"Bob\", \"tasks\": [{\"name\": \"Task 1\", \"id\": 1, \"sort_order\": 2}, {\"name\": \"Task 2\"}]}}}";
             serializer = new JavaScriptSerializer();
             dataContainer = serializer.Deserialize<DataContainer>(jsonText);
         }
@@ -32,8 +32,12 @@ namespace Tests
         public void ShouldCorrectlySerializeTheUsersTasks()
         {
             Assert.AreEqual(2, dataContainer.data.user.tasks.Count);
-            Assert.AreEqual("Task 1", dataContainer.data.user.tasks[0].name);
-            Assert.AreEqual("Task 2", dataContainer.data.user.tasks[1].name);
+            var firstTask = dataContainer.data.user.tasks[0];
+            var secondTask = dataContainer.data.user.tasks[1];
+            Assert.AreEqual("Task 1", firstTask.name);
+            Assert.AreEqual("Task 2", secondTask.name);
+            Assert.AreEqual(1, firstTask.id);
+            Assert.AreEqual(2, firstTask.sort_order);
         }
     }
 }
