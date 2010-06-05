@@ -8,6 +8,6 @@ namespace Importer.DTOs
         public string name { get; set; }
         public int sort_order { get; set; }
         public string task_type { get; set; }
-        public List<Task> children { get; set; }
+        public IEnumerable<Task> children { get; set; }
     }
 }

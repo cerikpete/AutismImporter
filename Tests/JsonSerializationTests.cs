@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Web.Script.Serialization;
 using Importer.DTOs;
 using NUnit.Framework;
@@ -38,8 +39,8 @@ namespace Tests
             Assert.AreEqual("Task 2", secondTask.name);
             Assert.AreEqual(1, firstTask.id);
             Assert.AreEqual(2, firstTask.sort_order);
-            Assert.AreEqual(1, secondTask.children.Count);
-            Assert.AreEqual("child 1", secondTask.children[0].name);
+            Assert.AreEqual(1, secondTask.children.Count());
+            Assert.AreEqual("child 1", secondTask.children.First().name);
             Assert.AreEqual("day", firstTask.task_type);
         }
     }

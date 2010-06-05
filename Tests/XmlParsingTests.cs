@@ -22,8 +22,9 @@ namespace Tests
         public void ShouldBeAbleToRetrieveTasksOfTypeDay()
         {
             var tasks = documentParser.GetTasksForCurrentDay("Tuesday");
-            Assert.AreEqual(2, tasks.Count());
+            Assert.AreEqual(1, tasks.Count());
             Assert.AreEqual("Brush Teeth", tasks.First().name);
+            Assert.AreEqual("Open Toothpaste", tasks.First().children.First().name);
         }
     }
 }
