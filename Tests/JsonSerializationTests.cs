@@ -4,24 +4,36 @@ using NUnit.Framework;
 
 namespace Tests
 {
-    [TestFixture]
-    public class JsonSerializationTests
+    public class BaseJsonSerializationTests
     {
-        private string jsonText;
-        private JavaScriptSerializer serializer;
+        protected string jsonText;
+        protected JavaScriptSerializer serializer;
+        protected DataContainer dataContainer;
 
         [SetUp]
         public void SetUp()
         {
-            jsonText = "{\"data\": {\"user\": {\"name\": \"Bob\"}}}";
+            jsonText = "{\"data\": {\"user\": {\"name\": \"Bob\", \"tasks\": [{\"name\": \"Task 1\"}, {\"name\": \"Task 2\"}]}}}";
             serializer = new JavaScriptSerializer();
+            dataContainer = serializer.Deserialize<DataContainer>(jsonText);
+        }
+    }
+
+    [TestFixture]
+    public class WhenSerializingTheJsonObject : BaseJsonSerializationTests
+    {
+        [Test]
+        public void ShouldCorrectlySerializeTheUsersName()
+        {
+            Assert.AreEqual("Bob", dataContainer.data.user.name);
         }
 
         [Test]
-        public void ShouldCorrectlySerializeJsonToObjects()
+        public void ShouldCorrectlySerializeTheUsersTasks()
         {
-            var dataContainer = serializer.Deserialize<DataContainer>(jsonText);
-            Assert.AreEqual("Bob", dataContainer.data.user.name);
+            Assert.AreEqual(2, dataContainer.data.user.tasks.Count);
+            Assert.AreEqual("Task 1", dataContainer.data.user.tasks[0].name);
+            Assert.AreEqual("Task 2", dataContainer.data.user.tasks[1].name);
         }
     }
 }
