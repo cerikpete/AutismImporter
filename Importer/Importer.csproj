@@ -45,6 +45,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JsonConverter\JavaScriptConverter.cs" />
+    <Compile Include="JsonConverter\JavaScriptSerializer.cs" />
+    <Compile Include="JsonConverter\JavaScriptTypeResolver.cs" />
+    <Compile Include="JsonConverter\JSON\CountingTextWriter.cs" />
+    <Compile Include="JsonConverter\JSON\JavaScriptConstructor.cs" />
+    <Compile Include="JsonConverter\JSON\JavaScriptConvert.cs" />
+    <Compile Include="JsonConverter\JSON\JavaScriptParameters.cs" />
+    <Compile Include="JsonConverter\JSON\JavaScriptUtils.cs" />
+    <Compile Include="JsonConverter\JSON\JsonReader.cs" />
+    <Compile Include="JsonConverter\JSON\JsonReaderException.cs" />
+    <Compile Include="JsonConverter\JSON\JsonSerializationException.cs" />
+    <Compile Include="JsonConverter\JSON\JsonSerializer.cs" />
+    <Compile Include="JsonConverter\JSON\JsonToken.cs" />
+    <Compile Include="JsonConverter\JSON\JsonWriter.cs" />
+    <Compile Include="JsonConverter\JSON\JsonWriterException.cs" />
+    <Compile Include="JsonConverter\JSON\ReflectionUtils.cs" />
+    <Compile Include="JsonConverter\ScriptIgnoreAttribute.cs" />
+    <Compile Include="JsonConverter\SimpleTypeResolver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
