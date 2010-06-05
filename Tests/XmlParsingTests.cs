@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Linq;
+using Importer.DTOs;
 using Importer.XmlParser;
 using NUnit.Framework;
 
@@ -16,15 +18,27 @@ namespace Tests
     }
 
     [TestFixture]
-    public class WhenParsingTheXmlDocument : BaseXmlParsingTests
+    public class WhenParsingTheXmlDocumentAndTheDayHasOneTaskWithOneStep : BaseXmlParsingTests
     {
-        [Test]
-        public void ShouldBeAbleToRetrieveTasksOfTypeDay()
+        private IEnumerable<Task> tasks;
+
+        [SetUp]
+        public void SetUpDaysTasks()
         {
-            var tasks = documentParser.GetTasksForCurrentDay("Tuesday");
+            tasks = documentParser.GetTasksForCurrentDay("Tuesday");          
+        }
+
+        [Test]
+        public void ShouldBeAbleToRetrieveTheTasksCorrectly()
+        {
             Assert.AreEqual(1, tasks.Count());
             Assert.AreEqual("Brush Teeth", tasks.First().Name);
-            Assert.AreEqual("Open Toothpaste", tasks.First().Children.First().Name);
+        }
+
+        [Test]
+        public void ShouldBeAbleToRetrieveTheTasksStepsCorrectly()
+        {
+            Assert.AreEqual("Open Toothpaste", tasks.First().Children.First().Name);            
         }
     }
 }
