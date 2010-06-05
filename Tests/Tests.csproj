@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="JsonSerializationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlParsingTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Importer\Importer.csproj">
