@@ -29,12 +29,12 @@ namespace Importer.XmlParser
             var taksForDay = nodeForDay.Elements("children");
             if (taksForDay != null && taksForDay.Count() > 0)
             {
-                return LoadTasksForItem(taksForDay);
+                return LoadTasksForItem(taksForDay, null);
             }
             return new List<Task>();
         }
 
-        private IEnumerable<Task> LoadTasksForItem(IEnumerable<XElement> childrenElement)
+        private IEnumerable<Task> LoadTasksForItem(IEnumerable<XElement> childrenElement, int? parentId)
         {
             // Get the "child" elements of this element, which would be the tasks
             var tasks = childrenElement.Elements("child");
@@ -42,19 +42,20 @@ namespace Importer.XmlParser
             {
                 foreach (var task in tasks)
                 {
-                    yield return CreateTask(task);
+                    yield return CreateTask(task, parentId);
                 }
             }
         }
 
-        private Task CreateTask(XElement element)
+        private Task CreateTask(XElement element, int? parentId)
         {
-            var task = new Task { Name = element.Element("name").Value };
+            var task = new Task { Name = element.Element("name").Value, ParentId = parentId};
             var children = element.Elements("children");
             var hasChildren = (children != null && children.Count() > 0);
             if (hasChildren)
             {
-                task.Children = LoadTasksForItem(children);
+                var taskId = int.Parse(element.Element("id").Value);
+                task.Children = LoadTasksForItem(children, taskId);
             }
             return task;
         }

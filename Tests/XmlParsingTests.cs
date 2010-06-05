@@ -33,12 +33,14 @@ namespace Tests
         {
             Assert.AreEqual(1, tasks.Count());
             Assert.AreEqual("Brush Teeth", tasks.First().Name);
+            Assert.IsNull(tasks.First().ParentId);
         }
 
         [Test]
         public void ShouldBeAbleToRetrieveTheTasksStepsCorrectly()
         {
             Assert.AreEqual("Open Toothpaste", tasks.First().Children.First().Name);            
+            Assert.AreEqual(19, tasks.First().Children.First().ParentId);
         }
     }
 }
