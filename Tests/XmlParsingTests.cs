@@ -23,8 +23,8 @@ namespace Tests
         {
             var tasks = documentParser.GetTasksForCurrentDay("Tuesday");
             Assert.AreEqual(1, tasks.Count());
-            Assert.AreEqual("Brush Teeth", tasks.First().name);
-            Assert.AreEqual("Open Toothpaste", tasks.First().children.First().name);
+            Assert.AreEqual("Brush Teeth", tasks.First().Name);
+            Assert.AreEqual("Open Toothpaste", tasks.First().Children.First().Name);
         }
     }
 }

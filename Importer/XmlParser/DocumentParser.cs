@@ -31,7 +31,7 @@ namespace Importer.XmlParser
             {
                 return LoadTasksForItem(taksForDay);
             }
-            return null;
+            return new List<Task>();
         }
 
         private IEnumerable<Task> LoadTasksForItem(IEnumerable<XElement> childrenElement)
@@ -47,21 +47,14 @@ namespace Importer.XmlParser
             }
         }
 
-        /// <summary>
-        /// for the element, 
-        ///     load task
-        ///     does it have a children node with one or more elements?
-        ///         if so, load task for each child element
-        /// </summary>
-
         private Task CreateTask(XElement element)
         {
-            var task = new Task { name = element.Element("name").Value };
+            var task = new Task { Name = element.Element("name").Value };
             var children = element.Elements("children");
             var hasChildren = (children != null && children.Count() > 0);
             if (hasChildren)
             {
-                task.children = LoadTasksForItem(children);
+                task.Children = LoadTasksForItem(children);
             }
             return task;
         }
