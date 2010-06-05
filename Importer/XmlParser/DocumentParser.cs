@@ -20,14 +20,18 @@ namespace Importer.XmlParser
             get { return xmlDocument; }
         }
 
-        public IEnumerable<Task> GetTasksForCurrentDay()
+        public IEnumerable<Task> GetTasksForCurrentDay(string nameOfDay)
         {
-            var day = DateTime.Now.DayOfWeek.ToString();
-            var tasksForDay = xmlDocument.Descendants("child").Where(x => x.Element("name").Value.StartsWith(day) && x.Element("task-type").Value == "day");
-            foreach (var taskForDay in tasksForDay)
+            var tasksForDay = xmlDocument.Descendants("child").Where(x => x.Element("name").Value.StartsWith(nameOfDay) && x.Element("task-type").Value == "day");
+            foreach (var taskForDay in tasksForDay.Descendants("child"))
             {
                 yield return new Task {name = taskForDay.Element("name").Value};
             }
+        }
+
+        public IEnumerable<Task> GetTasksForCurrentDay()
+        {
+            return GetTasksForCurrentDay(DateTime.Now.DayOfWeek.ToString());
         }
     }
 }
