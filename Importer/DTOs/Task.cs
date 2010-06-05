@@ -6,5 +6,6 @@ namespace Importer.DTOs
     {
         public string Name { get; set; }
         public IEnumerable<Task> Children { get; set; }
+        public bool Completed { get; set; }
     }
 }
