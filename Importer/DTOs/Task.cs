@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using SQLite;
 
 namespace Importer.DTOs
 {
@@ -6,6 +7,7 @@ namespace Importer.DTOs
     {
         public string Name { get; set; }
         public int? ParentId { get; set; }
+        [Ignore]
         public IEnumerable<Task> Children { get; set; }
         public bool Completed { get; set; }
     }

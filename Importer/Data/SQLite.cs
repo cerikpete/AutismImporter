@@ -153,6 +153,7 @@ namespace SQLite
 
             var decls = map.Columns.Select(p => Orm.SqlDecl(p));
             var decl = string.Join(",\n", decls.ToArray());
+            decl = decl.Replace("\n,\n", "\n");
             query += decl;
             query += ")";
 
@@ -463,6 +464,9 @@ namespace SQLite
             Value = length;
         }
     }
+    public class IgnoreAttribute : Attribute
+    {
+    }
 
     public class TableMapping
     {
@@ -534,7 +538,7 @@ namespace SQLite
             {
                 if (_insertColumns == null)
                 {
-                    _insertColumns = Columns.Where(c => !c.IsAutoInc).ToArray();
+                    _insertColumns = Columns.Where(c => !c.IsAutoInc && !c.ShouldIgnore).ToArray();
                 }
                 return _insertColumns;
             }
@@ -566,6 +570,7 @@ namespace SQLite
             public bool IsPK { get; protected set; }
             public bool IsIndexed { get; protected set; }
             public bool IsNullable { get; protected set; }
+            public bool ShouldIgnore { get; protected set; }
             public int MaxStringLength { get; protected set; }
             public abstract void SetValue(object obj, object val);
             public abstract object GetValue(object obj);
@@ -582,6 +587,7 @@ namespace SQLite
                 IsPK = Orm.IsPK(prop);
                 IsIndexed = Orm.IsIndexed(prop);
                 IsNullable = !IsPK;
+                ShouldIgnore = Orm.ShouldIgnore(prop);
                 MaxStringLength = Orm.MaxStringLength(prop);
             }
             public override void SetValue(object obj, object val)
@@ -602,28 +608,32 @@ namespace SQLite
 
         public static string SqlDecl(TableMapping.Column p)
         {
-            string decl = "\"" + p.Name + "\" " + SqlType(p) + " ";
+            if (!p.ShouldIgnore)
+            {
+                string decl = "\"" + p.Name + "\" " + SqlType(p) + " ";
 
-            if (p.IsPK)
-            {
-                decl += "primary key ";
-            }
-            if (p.IsAutoInc)
-            {
-                decl += "autoincrement ";
-            }
-            if (!p.IsNullable)
-            {
-                decl += "not null ";
-            }
+                if (p.IsPK)
+                {
+                    decl += "primary key ";
+                }
+                if (p.IsAutoInc)
+                {
+                    decl += "autoincrement ";
+                }
+                if (!p.IsNullable)
+                {
+                    decl += "not null ";
+                }
 
-            return decl;
+                return decl;
+            }
+            return string.Empty;
         }
 
         public static string SqlType(TableMapping.Column p)
         {
             var clrType = p.ColumnType;
-            if (clrType == typeof(Boolean) || clrType == typeof(Byte) || clrType == typeof(UInt16) || clrType == typeof(SByte) || clrType == typeof(Int16) || clrType == typeof(Int32))
+            if (clrType == typeof(Boolean) || clrType == typeof(Byte) || clrType == typeof(UInt16) || clrType == typeof(SByte) || clrType == typeof(Int16) || clrType == typeof(Int32) || clrType == typeof(int?))
             {
                 return "integer";
             }
@@ -669,6 +679,12 @@ namespace SQLite
         public static bool IsIndexed(MemberInfo p)
         {
             var attrs = p.GetCustomAttributes(typeof(IndexedAttribute), true);
+            return attrs.Length > 0;
+        }
+
+        public static bool ShouldIgnore(MemberInfo p)
+        {
+            var attrs = p.GetCustomAttributes(typeof(IgnoreAttribute), true);
             return attrs.Length > 0;
         }
 
