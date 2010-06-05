@@ -13,7 +13,7 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            jsonText = "{\"data\": {\"user\": {\"name\": \"Bob\", \"tasks\": [{\"name\": \"Task 1\", \"id\": 1, \"sort_order\": 2}, {\"name\": \"Task 2\", \"children\": [{\"name\": \"child 1\"}]}]}}}";
+            jsonText = "{\"data\": {\"user\": {\"name\": \"Bob\", \"tasks\": [{\"name\": \"Task 1\", \"id\": 1, \"task_type\": \"day\", \"sort_order\": 2}, {\"name\": \"Task 2\", \"children\": [{\"name\": \"child 1\"}]}]}}}";
             serializer = new JavaScriptSerializer();
             dataContainer = serializer.Deserialize<DataContainer>(jsonText);
         }
@@ -40,6 +40,7 @@ namespace Tests
             Assert.AreEqual(2, firstTask.sort_order);
             Assert.AreEqual(1, secondTask.children.Count);
             Assert.AreEqual("child 1", secondTask.children[0].name);
+            Assert.AreEqual("day", firstTask.task_type);
         }
     }
 }

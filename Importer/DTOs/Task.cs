@@ -7,6 +7,7 @@ namespace Importer.DTOs
         public int id { get; set; }
         public string name { get; set; }
         public int sort_order { get; set; }
+        public string task_type { get; set; }
         public List<Task> children { get; set; }
     }
 }
