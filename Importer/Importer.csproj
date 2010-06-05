@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\Task.cs" />
+    <Compile Include="DTOs\User.cs" />
     <Compile Include="JsonConverter\JavaScriptConverter.cs" />
     <Compile Include="JsonConverter\JavaScriptSerializer.cs" />
     <Compile Include="JsonConverter\JavaScriptTypeResolver.cs" />
