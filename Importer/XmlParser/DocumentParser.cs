@@ -49,7 +49,7 @@ namespace Importer.XmlParser
 
         private Task CreateTask(XElement element, int? parentId)
         {
-            var task = new Task { Name = element.Element("name").Value, ParentId = parentId};
+            var task = new Task { Id = int.Parse(element.Element("id").Value), Name = element.Element("name").Value, ParentId = parentId};
             var children = element.Elements("children");
             var hasChildren = (children != null && children.Count() > 0);
             if (hasChildren)
