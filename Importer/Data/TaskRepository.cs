@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Importer.DTOs;
 using Importer.XmlParser;
@@ -42,6 +44,16 @@ namespace Importer.Data
                                    orderby task.SortOrder
                                    select task);
             return tasksForStudent;
+        }
+
+        public void ImportMedia(string imageUri)
+        {
+            var fileName = Path.GetFileName(imageUri);
+            var savePathForFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), fileName);            
+            if (!File.Exists(savePathForFile))
+            {
+                
+            }
         }
 
         private void SaveTask(Task task)
