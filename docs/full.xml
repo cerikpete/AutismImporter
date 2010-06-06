@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <version>1.1</version>
+  <data>
+    <user>
+      <name>Bob</name>
+      <created-at>2010-06-05T14:29:52Z</created-at>
+      <updated-at>2010-06-05T14:29:52Z</updated-at>
+      <role>student</role>
+      <tasks type="array">
+        <task>
+          <name>Week 1</name>
+          <task-type>week</task-type>
+          <created-at>2010-06-05T14:29:52Z</created-at>
+          <updated-at>2010-06-05T14:29:52Z</updated-at>
+          <sort-order type="integer">1</sort-order>
+          <id type="integer">1</id>
+          <contents type="array"/>
+          <children type="array">
+            <child>
+              <name>Monday 1</name>
+              <task-type>day</task-type>
+              <created-at>2010-06-05T14:29:52Z</created-at>
+              <updated-at>2010-06-05T14:29:52Z</updated-at>
+              <sort-order type="integer">1</sort-order>
+              <id type="integer">2</id>
+              <contents type="array"/>
+              <children type="array">
+                <child>
+                  <name>Choice 1</name>
+                  <task-type>choice</task-type>
+                  <created-at>2010-06-05T14:29:52Z</created-at>
+                  <updated-at>2010-06-05T14:29:52Z</updated-at>
+                  <sort-order type="integer">1</sort-order>
+                  <id type="integer">9</id>
+                  <contents type="array"/>
+                  <children type="array">
+                    <child>
+                      <name>Choice 1 Task 1</name>
+                      <task-type>task</task-type>
+                      <created-at>2010-06-05T14:29:52Z</created-at>
+                      <updated-at>2010-06-05T14:29:52Z</updated-at>
+                      <sort-order type="integer">0</sort-order>
+                      <id type="integer">10</id>
+                      <contents type="array"/>
+                      <children type="array"/>
+                    </child>
+                    <child>
+                      <name>Choice 1 Task 2</name>
+                      <task-type>task</task-type>
+                      <created-at>2010-06-05T14:29:52Z</created-at>
+                      <updated-at>2010-06-05T14:29:52Z</updated-at>
+                      <sort-order type="integer">0</sort-order>
+                      <id type="integer">11</id>
+                      <contents type="array"/>
+                      <children type="array"/>
+                    </child>
+                    <child>
+                      <name>Choice 1 Task 3</name>
+                      <task-type>task</task-type>
+                      <created-at>2010-06-05T14:29:52Z</created-at>
+                      <updated-at>2010-06-05T14:29:52Z</updated-at>
+                      <sort-order type="integer">0</sort-order>
+                      <id type="integer">12</id>
+                      <contents type="array"/>
+                      <children type="array"/>
+                    </child>
+                    <child>
+                      <name>Choice 1 Choice 1</name>
+                      <task-type>choice</task-type>
+                      <created-at>2010-06-05T14:29:52Z</created-at>
+                      <updated-at>2010-06-05T14:29:52Z</updated-at>
+                      <sort-order type="integer">0</sort-order>
+                      <id type="integer">13</id>
+                      <contents type="array"/>
+                      <children type="array">
+                        <child>
+                          <name>Choice 1 Choice 1 Task 1</name>
+                          <task-type>task</task-type>
+                          <created-at>2010-06-05T14:29:52Z</created-at>
+                          <updated-at>2010-06-05T14:29:52Z</updated-at>
+                          <sort-order type="integer">0</sort-order>
+                          <id type="integer">14</id>
+                          <contents type="array"/>
+                          <children type="array"/>
+                        </child>
+                        <child>
+                          <name>Choice 1 Choice 1 Task 2</name>
+                          <task-type>task</task-type>
+                          <created-at>2010-06-05T14:29:52Z</created-at>
+                          <updated-at>2010-06-05T14:29:52Z</updated-at>
+                          <sort-order type="integer">0</sort-order>
+                          <id type="integer">15</id>
+                          <contents type="array"/>
+                          <children type="array"/>
+                        </child>
+                      </children>
+                    </child>
+                  </children>
+                </child>
+              </children>
+            </child>
+            <child>
+              <name>Tuesday 1</name>
+              <task-type>day</task-type>
+              <created-at>2010-06-05T14:29:52Z</created-at>
+              <updated-at>2010-06-05T14:29:52Z</updated-at>
+              <sort-order type="integer">2</sort-order>
+              <id type="integer">3</id>
+              <contents type="array"/>
+              <children type="array">
+                <child>
+                  <name>Brush Teeth</name>
+                  <task-type/>
+                  <created-at>2010-06-05T14:29:52Z</created-at>
+                  <updated-at>2010-06-05T14:29:52Z</updated-at>
+                  <sort-order type="integer">1</sort-order>
+                  <id type="integer">19</id>
+                  <contents type="array">
+                    <content>
+                      <name>Picture of woman brushing teeth</name>
+                      <created-at>2010-06-05T14:29:52Z</created-at>
+                      <updated-at>2010-06-05T14:29:52Z</updated-at>
+                      <id type="integer">1</id>
+                      <content>http://www.whoateallthepies.tv/wp-content/uploads/2009/11/woman-brushing-teeth.jpg</content>
+                    </content>
+                  </contents>
+                  <children type="array">
+                    <child>
+                      <name>Open Toothpaste</name>
+                      <task-type/>
+                      <created-at>2010-06-05T14:29:52Z</created-at>
+                      <updated-at>2010-06-05T14:29:52Z</updated-at>
+                      <sort-order type="integer">1</sort-order>
+                      <id type="integer">20</id>
+                      <contents type="array">
+                        <content>
+                          <name>Picture of man opening toothpaste</name>
+                          <created-at>2010-06-05T14:29:52Z</created-at>
+                          <updated-at>2010-06-05T14:29:52Z</updated-at>
+                          <id type="integer">2</id>
+                          <content>http://handyhints.gophercentral.com/wp-content/uploads/2009/03/toothpaste2.jpg</content>
+                        </content>
+                      </contents>
+                      <children type="array"/>
+                    </child>
+                  </children>
+                </child>
+              </children>
+            </child>
+            <child>
+              <name>Wednesday 1</name>
+              <task-type>day</task-type>
+              <created-at>2010-06-05T14:29:52Z</created-at>
+              <updated-at>2010-06-05T14:29:52Z</updated-at>
+              <sort-order type="integer">3</sort-order>
+              <id type="integer">4</id>
+              <contents type="array"/>
+              <children type="array"/>
+            </child>
+            <child>
+              <name>Thursday 1</name>
+              <task-type>day</task-type>
+              <created-at>2010-06-05T14:29:52Z</created-at>
+              <updated-at>2010-06-05T14:29:52Z</updated-at>
+              <sort-order type="integer">4</sort-order>
+              <id type="integer">5</id>
+              <contents type="array"/>
+              <children type="array"/>
+            </child>
+            <child>
+              <name>Friday 1</name>
+              <task-type>day</task-type>
+              <created-at>2010-06-05T14:29:52Z</created-at>
+              <updated-at>2010-06-05T14:29:52Z</updated-at>
+              <sort-order type="integer">5</sort-order>
+              <id type="integer">6</id>
+              <contents type="array"/>
+              <children type="array"/>
+            </child>
+            <child>
+              <name>Saturday 1</name>
+              <task-type>day</task-type>
+              <created-at>2010-06-05T14:29:52Z</created-at>
+              <updated-at>2010-06-05T14:29:52Z</updated-at>
+              <sort-order type="integer">6</sort-order>
+              <id type="integer">7</id>
+              <contents type="array"/>
+              <children type="array"/>
+            </child>
+            <child>
+              <name>Sunday 1</name>
+              <task-type>day</task-type>
+              <created-at>2010-06-05T14:29:52Z</created-at>
+              <updated-at>2010-06-05T14:29:52Z</updated-at>
+              <sort-order type="integer">7</sort-order>
+              <id type="integer">8</id>
+              <contents type="array"/>
+              <children type="array"/>
+            </child>
+          </children>
+        </task>
+      </tasks>
+      <id type="integer">1</id>
+    </user>
+  </data>
+  <error/>
+</hash>
