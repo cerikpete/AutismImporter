@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Importer.DTOs;
 using Importer.XmlParser;
@@ -34,12 +35,13 @@ namespace Importer.Data
             }
         }
 
-        public void GetTasksForStudentForCurrentDay(int studentId)
+        public IEnumerable<Task> GetTasksForStudentForCurrentDay(int studentId)
         {
             var tasksForStudent = (from task in db.Table<Task>()
                                    where task.ParentId == 0
                                    orderby task.SortOrder
                                    select task);
+            return tasksForStudent;
         }
 
         private void SaveTask(Task task)
