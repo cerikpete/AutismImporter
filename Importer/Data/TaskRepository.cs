@@ -1,0 +1,40 @@
+using System.Linq;
+using Importer.DTOs;
+using Importer.XmlParser;
+using SQLite;
+
+namespace Importer.Data
+{
+    public class TaskRepository
+    {
+        private readonly DocumentParser documentParser;
+        private SQLiteConnection db;
+
+        public TaskRepository(DocumentParser documentParser)
+        {
+            this.documentParser = documentParser;
+            db = new DatabaseFactory().InitDb();
+        }
+
+        public void ImportTasksForTheCurrentDay() //TODO: Will need the student id
+        {
+            var tasksToImport = documentParser.GetTasksForCurrentDay();
+            foreach (var task in tasksToImport)
+            {
+                SaveTask(task);
+            }
+        }
+
+        private void SaveTask(Task task)
+        {
+            db.Insert(task);
+            if (task.Children != null && task.Children.Count() > 0)
+            {
+                foreach (var childTask in task.Children)
+                {
+                    SaveTask(childTask);
+                }
+            }
+        }
+    }
+}
