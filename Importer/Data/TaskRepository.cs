@@ -25,6 +25,15 @@ namespace Importer.Data
             }
         }
 
+        public void ImportTasksForTheCurrentDay(string dayName) //TODO: Remove
+        {
+            var tasksToImport = documentParser.GetTasksForCurrentDay(dayName);
+            foreach (var task in tasksToImport)
+            {
+                SaveTask(task);
+            }
+        }
+
         private void SaveTask(Task task)
         {
             db.Insert(task);

@@ -33,7 +33,7 @@ namespace Tests
         {
             Assert.AreEqual(1, tasks.Count());
             Assert.AreEqual("Brush Teeth", tasks.First().Name);
-            Assert.IsNull(tasks.First().ParentId);
+            Assert.AreEqual(0, tasks.First().ParentId);
             Assert.AreEqual(19, tasks.First().Id);
         }
 

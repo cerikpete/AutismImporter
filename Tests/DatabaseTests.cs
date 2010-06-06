@@ -1,7 +1,9 @@
 using System;
 using System.IO;
 using System.Linq;
+using Importer.Data;
 using Importer.DTOs;
+using Importer.XmlParser;
 using NUnit.Framework;
 using SQLite;
 
@@ -56,6 +58,26 @@ namespace Tests
             var tasks = (from t in db.Table<Task>() select t);
             Assert.AreEqual(1, tasks.Count());
             Assert.AreEqual("name", tasks.First().Name);
+        }
+    }
+
+    [TestFixture]
+    public class WhenImportingDataFromTheXmlIntoTheDatabase : BaseDatabaseTests
+    {
+        private TaskRepository taskRepository;
+
+        [SetUp]
+        public void ImportData()
+        {
+            taskRepository = new TaskRepository(new DocumentParser());
+        }
+
+        [Test]
+        public void ShouldSaveAllObjectsForTheCurrentDayIntoTheDatabase()
+        {
+            taskRepository.ImportTasksForTheCurrentDay("Tuesday");
+            var tasks = (from t in db.Table<Task>() select t);
+            Assert.AreEqual(2, tasks.Count());
         }
     }
 }
