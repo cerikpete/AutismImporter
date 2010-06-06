@@ -3,6 +3,13 @@ using SQLite;
 
 namespace Importer.DTOs
 {
+    public enum TaskType
+    {
+        SingleStep,
+        WithChoices,
+        WithSteps
+    }
+
     public class Task
     {
         [PrimaryKey]
@@ -12,5 +19,7 @@ namespace Importer.DTOs
         [Ignore]
         public IEnumerable<Task> Children { get; set; }
         public bool Completed { get; set; }
+        [Ignore]
+        public TaskType TaskType { get; set; }
     }
 }
