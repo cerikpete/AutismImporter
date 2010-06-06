@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using Importer.DTOs;
 using Importer.XmlParser;
 using SQLite;
@@ -46,13 +47,30 @@ namespace Importer.Data
             return tasksForStudent;
         }
 
-        public void ImportMedia(string imageUri)
+        public void ImportMedia(string fileUri)
         {
-            var fileName = Path.GetFileName(imageUri);
+            var fileName = Path.GetFileName(fileUri);
             var savePathForFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), fileName);            
             if (!File.Exists(savePathForFile))
             {
-                
+                var client = new WebClient();
+                BinaryWriter binaryWriter = null;
+                try
+                {
+                    byte[] data = client.DownloadData(fileUri);
+                    var fileStream = new FileStream(savePathForFile, FileMode.Create, FileAccess.Write);
+                    binaryWriter = new BinaryWriter(fileStream);
+                    binaryWriter.Write(data);
+                    binaryWriter.Close();
+                }
+                finally
+                {
+                    client.Dispose();
+                    if (binaryWriter != null)
+                    {
+                        binaryWriter.Close();
+                    }
+                }
             }
         }
 
