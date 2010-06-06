@@ -9,6 +9,7 @@ namespace Importer.XmlParser
     public class DocumentParser
     {
         private readonly XDocument xmlDocument;
+        private int studentId;
 
         public DocumentParser()
         {
@@ -22,14 +23,18 @@ namespace Importer.XmlParser
 
         public IEnumerable<Task> GetTasksForCurrentDay(string nameOfDay)
         {
+            // Get the ID of the current student
+            var userNode = xmlDocument.Descendants("user");
+            studentId = int.Parse(userNode.First().Element("id").Value);
+
             // Get the node from the xml document representing the current day
             var nodeForDay = xmlDocument.Descendants("child").Where(x => x.Element("name").Value.StartsWith(nameOfDay) && x.Element("task-type").Value == "day").First();
 
             // Get the children element of this node
-            var taksForDay = nodeForDay.Elements("children");
-            if (taksForDay != null && taksForDay.Count() > 0)
+            var tasksForDay = nodeForDay.Elements("children");
+            if (tasksForDay != null && tasksForDay.Count() > 0)
             {
-                return LoadTasksForItem(taksForDay, 0);
+                return LoadTasksForItem(tasksForDay, 0);
             }
             return new List<Task>();
         }
@@ -49,7 +54,11 @@ namespace Importer.XmlParser
 
         private Task CreateTask(XElement element, int parentId)
         {
-            var task = new Task { Id = int.Parse(element.Element("id").Value), Name = element.Element("name").Value, ParentId = parentId};
+            var task = new Task { Id = int.Parse(element.Element("id").Value), 
+                                    Name = element.Element("name").Value, 
+                                    ParentId = parentId,
+                                    SortOrder = int.Parse(element.Element("sort-order").Value),
+                                    StudentId = studentId};
             var children = element.Elements("children");
             var hasChildren = (children != null && children.Count() > 0);
             if (hasChildren)

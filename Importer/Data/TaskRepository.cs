@@ -34,6 +34,14 @@ namespace Importer.Data
             }
         }
 
+        public void GetTasksForStudentForCurrentDay(int studentId)
+        {
+            var tasksForStudent = (from task in db.Table<Task>()
+                                   where task.ParentId == 0
+                                   orderby task.SortOrder
+                                   select task);
+        }
+
         private void SaveTask(Task task)
         {
             db.Insert(task);

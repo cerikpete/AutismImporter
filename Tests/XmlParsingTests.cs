@@ -35,6 +35,8 @@ namespace Tests
             Assert.AreEqual("Brush Teeth", tasks.First().Name);
             Assert.AreEqual(0, tasks.First().ParentId);
             Assert.AreEqual(19, tasks.First().Id);
+            Assert.AreEqual(1, tasks.First().SortOrder);
+            Assert.AreEqual(1, tasks.First().StudentId);
         }
 
         [Test]

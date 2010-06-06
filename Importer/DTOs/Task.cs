@@ -21,5 +21,7 @@ namespace Importer.DTOs
         public bool Completed { get; set; }
         [Ignore]
         public TaskType TaskType { get; set; }
+        public int SortOrder { get; set; }
+        public int StudentId { get; set; }
     }
 }
